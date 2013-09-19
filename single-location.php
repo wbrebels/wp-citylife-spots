@@ -26,43 +26,56 @@ get_header(); ?>
 
 					<hr />
 					<p>
-						<?php/*
-							if(!empty(esc_attr(get_post_meta(get_the_ID(), 'location_street', true )))){
-								echo esc_attr( get_post_meta(get_the_ID(), 'location_street', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_number', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_box', true ));
+						<?php
+							if(get_post_meta(get_the_ID(), 'location_street', true) !== ""){
+								echo esc_attr( get_post_meta(get_the_ID(), 'location_street', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_number', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_box', true )) . "<br />";
 							}
-							if(!empty(esc_attr(get_post_meta(get_the_ID(), 'location_zipcode', true )))){
-								echo "B-" . esc_attr(get_post_meta( get_the_ID(), 'location_zipcode', true ) ) . " " . esc_attr( get_post_meta( get_the_ID(), 'location_city', true ) );
+							if(get_post_meta(get_the_ID(), 'location_zipcode', true) !== ""){
+								echo "B-" . esc_attr(get_post_meta( get_the_ID(), 'location_zipcode', true )) . " " . esc_attr( get_post_meta( get_the_ID(), 'location_city', true )) . "<br />";
 							}
-
-							if(!empty(esc_attr(get_post_meta(get_the_ID(), 'location_phone', true )))){
-								echo "T. " . esc_attr(get_post_meta( get_the_ID(), 'location_phone', true ) );
+							if(get_post_meta(get_the_ID(), 'location_phone', true) !== ""){
+								echo "T. " . esc_attr(get_post_meta( get_the_ID(), 'location_phone', true )) . "<br />";
 							}
-
-							if(!empty(esc_attr(get_post_meta(get_the_ID(), 'location_fax', true )))){
-								echo "F. " . esc_attr(get_post_meta( get_the_ID(), 'location_fax', true ));
+							if(get_post_meta(get_the_ID(), 'location_fax', true) !== ""){
+								echo "F. " . esc_attr(get_post_meta( get_the_ID(), 'location_fax', true )) . "<br />";
 							}
-							if(!empty(esc_attr(get_post_meta(get_the_ID(), 'location_email', true )))){
-								echo antispambot(esc_attr(get_post_meta( get_the_ID(), 'location_email', true )));
+							if(get_post_meta(get_the_ID(), 'location_email', true) !== ""){
+								echo antispambot(esc_attr(get_post_meta( get_the_ID(), 'location_email', true ))) . "<br />";
 							}
-*/
-							//if(esc_attr(get_post_meta(get_the_ID(), 'location_website', true ))){
-							//echo get_the_ID();
-								//echo get_post_meta( get_the_ID(), 'location_website', true );
-							//}
+							if(get_post_meta(get_the_ID(), 'location_website', true) !== ""){
+								echo esc_attr(get_post_meta( get_the_ID(), 'location_website', true )) . "<br />";
+							}
 						?>
 					</p>
 
 					<hr />
 					<p>
-						<strong>Openingsuren: </strong><?php echo esc_attr( get_post_meta( get_the_ID(), 'location_openinghours', true ) ); ?><br />
-						<strong>Sluitingsdag: </strong><?php echo esc_attr( get_post_meta( get_the_ID(), 'location_closingdays', true ) ); ?>
+
+						<?php
+							if(get_post_meta(get_the_ID(), 'location_openinghours', true) !== ""){
+								echo "<strong>Openingsuren:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_openinghours', true )) . "<br />";
+							}
+							if(get_post_meta(get_the_ID(), 'location_closingdays', true) !== ""){
+								echo "<strong>Sluitingsdag:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_closingdays', true )) . "<br />";
+							}
+						?>
 					</p>
 
 					<hr />
 					<p>
-						Groups Capacity: <?php echo esc_attr( get_post_meta( get_the_ID(), 'location_capacity_group', true ) ); ?> |
-						Seats outside: <?php echo esc_attr( get_post_meta( get_the_ID(), 'location_capacity_outside', true ) ); ?> |
-						Seats inside: <?php echo esc_attr( get_post_meta( get_the_ID(), 'location_capacity_inside', true ) ); ?> |
+
+						<?php
+							if(get_post_meta(get_the_ID(), 'location_capacity_group', true) !== ""){
+								echo "<strong>Groups Capacity:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_group', true )) . " | ";
+							}
+							if(get_post_meta(get_the_ID(), 'location_capacity_outside', true) !== ""){
+								echo "<strong>Seats outside:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_outside', true )) . " | ";
+							}
+							if(get_post_meta(get_the_ID(), 'location_capacity_inside', true) !== ""){
+								echo "<strong>Seats inside:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_inside', true )) . " | ";
+							}
+						?>
+						
 						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_childfriendly', true ) ) == "on" ? "Childfriendly | " : ""; ?>
 						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_bikefriendly', true ) ) == "on" ? "Bicyclefriendly | " : ""; ?>
 						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_wheelchair', true ) ) == "on" ? "Accessible for wheelchair users" : ""; ?>
