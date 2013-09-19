@@ -1,0 +1,253 @@
+<?php
+/*
+Plugin Name: CitySpots
+Plugin URI: http://citylifeapp.com/
+Description: We can handle it all! Also Locations
+Version: 1.0
+Author: Tom Claus
+Author URI: http://tomclaus.be/
+License: GPLv2
+*/
+
+add_action( 'init', 'create_location' );
+function create_location() {
+	register_post_type( 'location',
+		array(
+			'labels' =>  array(
+				'name' 					=> 'Locations',
+				'singular_name' 		=> 'Location',
+				'add_new' 				=> 'Add new',
+				'add_new_item' 			=> 'Add new location',
+				'edit_item' 			=> 'Edit location',
+				'new_item' 				=> 'New location',
+				'all_items' 			=> 'All locations',
+				'view_item' 			=> 'View location',
+				'search_items' 			=> 'Search locations',
+				'not_found' 			=> 'No locations found',
+				'not_found_in_trash'	=> 'No locations found in trash',
+				'parent_item_colon' 	=> '',
+				'menu_name' 			=> 'Locations',
+			),
+			'public' 				=> true,
+			'menu_position' 		=> 5,
+			'supports'				=> array( 'title', 'editor', 'thumbnail' ),
+			'taxonomies' 			=> array( '' ),
+			'menu_icon' 			=> plugins_url( 'images/image.png', __FILE__ ),
+			'has_archive' 			=> true
+		)
+	);
+
+	flush_rewrite_rules();
+}
+
+
+add_action( 'admin_init', 'location_admin' );
+function location_admin() {
+	add_meta_box( 'location_address_meta_box', 'Address', 'location_address_meta_box', 'location', 'normal', 'high' );
+	add_meta_box( 'location_contact_meta_box', 'Contact information', 'location_contact_meta_box', 'location', 'normal', 'high' );
+	add_meta_box( 'location_openinghours_meta_box', 'Openinghours', 'location_openinghours_meta_box', 'location', 'normal', 'high' );
+	add_meta_box( 'location_information_meta_box', 'Information', 'location_information_meta_box', 'location', 'normal', 'high' );
+}
+
+function location_address_meta_box( $location ) {
+	
+	$location_street 	= esc_attr( get_post_meta($location->ID, 'location_street', true) );
+	$location_number 	= esc_attr( get_post_meta($location->ID, 'location_number', true) );
+	$location_box 		= esc_attr( get_post_meta($location->ID, 'location_box', true) );
+	$location_zipcode 	= esc_attr( get_post_meta($location->ID, 'location_zipcode', true) );
+	$location_city 		= esc_attr( get_post_meta($location->ID, 'location_city', true) );
+
+	?>
+		<table width="100%">
+			<tr>
+				<td width="25%">Stree / Number / Box</td>
+				<td width="75%">
+					<input placeholder="Street" type="text" size="30" name="location_street" value="<?php echo $location_street; ?>" />
+					<input placeholder="number" type="text" size="5" name="location_number" value="<?php echo $location_number; ?>" />
+					<input placeholder="Box" type="text" size="5" name="location_box" value="<?php echo $location_box; ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td>Zip / City</td>
+				<td>
+					<input placeholder="Zip" type="text" size="20" name="location_zipcode" value="<?php echo $location_zipcode; ?>" />
+					<input placeholder="City" type="text" size="25" name="location_city" value="<?php echo $location_city; ?>" />
+				</td>
+			</tr>	
+		</table>
+	<?php
+}
+
+function location_contact_meta_box( $location ) {
+	
+	$location_phone 	= esc_attr( get_post_meta($location->ID, 'location_phone', true) );
+	$location_fax 		= esc_attr( get_post_meta($location->ID, 'location_fax', true) );
+	$location_email 	= esc_attr( get_post_meta($location->ID, 'location_email', true) );
+	$location_website 	= esc_attr( get_post_meta($location->ID, 'location_website', true) );
+
+	?>
+		<table width="100%">
+			<tr>
+				<td width="25%">Phone</td>
+				<td width="75%"><input type="text" size="50" name="location_phone" value="<?php echo $location_phone; ?>" /></td>
+			</tr>
+			<tr>
+				<td>Fax</td>
+				<td><input type="text" size="50" name="location_fax" value="<?php echo $location_fax; ?>" /></td>
+			</tr>			
+			<tr>
+				<td>Email</td>
+				<td><input type="text" size="50" name="location_email" value="<?php echo $location_email; ?>" /></td>
+			</tr>
+			<tr>
+				<td>Website</td>
+				<td><input type="text" size="50" name="location_website" value="<?php echo $location_website; ?>" /></td>
+			</tr>
+		</table>
+	<?php
+}
+
+function location_openinghours_meta_box( $location ) {
+	
+	$location_openinghours 		= esc_attr( get_post_meta($location->ID, 'location_openinghours', true) );
+	$location_closingdays 		= esc_attr( get_post_meta($location->ID, 'location_closingdays', true) );
+
+	?>
+		<table width="100%">
+			<tr>
+				<td width="25%">Openinghours</td>
+				<td width="75%"><textarea cols="50" rows='3' name="location_openinghours"><?php echo $location_openinghours; ?></textarea></td>
+			</tr>
+			<tr>
+				<td>Closing days</td>
+				<td><input type="text" size="50" name="location_closingdays" value="<?php echo $location_closingdays; ?>" /></td>
+			</tr>			
+		</table>
+	<?php
+}
+
+
+
+function location_information_meta_box( $location ) {
+	
+	$location_capacity_group 	= intval( get_post_meta($location->ID, 'location_capacity_group', true) );
+	$location_capacity_outside 	= intval( get_post_meta($location->ID, 'location_capacity_outside', true) );
+	$location_capacity_inside 	= intval( get_post_meta($location->ID, 'location_capacity_inside', true) );
+	$location_childfriendly 	= esc_attr( get_post_meta($location->ID, 'location_childfriendly', true) );  
+	$location_bikefriendly 		= esc_attr( get_post_meta($location->ID, 'location_bikefriendly', true) );  
+	$location_wheelchair 		= esc_attr( get_post_meta($location->ID, 'location_wheelchair', true) );  
+
+	?>	
+		<table width="100%">
+			<tr>
+				<td width="25%">Capacity Groups <small>(number of People)</small></td>
+				<td width="75%"><input type="number" size="3" name="location_capacity_group" value="<?php echo $location_capacity_group; ?>" /></td>
+			</tr>
+			<tr>
+				<td>Seats inside</td>
+				<td><input type="number" size="3" name="location_capacity_inside" value="<?php echo $location_capacity_inside; ?>" /></td>
+			</tr>			
+			<tr>
+				<td>Seats terrace</td>
+				<td><input type="number" size="3" name="location_capacity_outside" value="<?php echo $location_capacity_outside; ?>" /></td>
+			</tr>		
+			<tr>
+				<td>Child friendly?</td>
+				<td><input type="checkbox" name="location_childfriendly" <?php checked( $location_childfriendly, 'on' ); ?> /> </td>		
+			</tr>
+			<tr>
+				<td>Bicylce friendly?</td>
+				<td><input type="checkbox" name="location_bikefriendly" <?php checked( $location_bikefriendly, 'on' ); ?> /> </td>		
+			</tr>
+			<tr>
+				<td>Accessible for wheelchair users?</td>
+				<td><input type="checkbox" name="location_wheelchair" <?php checked( $location_wheelchair, 'on' ); ?> /> </td>		
+			</tr>
+		</table>
+	<?php 
+}
+
+
+add_action( 'save_post', 'add_location_detail_fields', 10, 2 );
+function add_location_detail_fields( $location_id, $location ) {
+	
+	if ( $location->post_type == 'location' ) {
+		
+		// ADRESS
+		if ( isset( $_POST['location_street'] ) && !empty($_POST['location_street']) ) {
+			update_post_meta( $location_id, 'location_street', $_POST['location_street'] );
+		}
+		if ( isset( $_POST['location_number'] ) && !empty($_POST['location_number'])) {
+			update_post_meta( $location_id, 'location_number', $_POST['location_number'] );
+		}
+		if ( isset( $_POST['location_box'] ) && !empty($_POST['location_box']) ) {
+			update_post_meta( $location_id, 'location_box', $_POST['location_box'] );
+		}
+		if ( isset( $_POST['location_zipcode'] ) && !empty($_POST['location_zipcode']) ) {
+			update_post_meta( $location_id, 'location_zipcode', $_POST['location_zipcode'] );
+		}
+		if ( isset( $_POST['location_city'] ) && !empty($_POST['location_city']) ) {
+			update_post_meta( $location_id, 'location_city', $_POST['location_city'] );
+		}
+
+
+		// CONTACT
+		if ( isset( $_POST['location_phone'] ) && !empty($_POST['location_phone']) ) {
+			update_post_meta( $location_id, 'location_phone', $_POST['location_phone'] );
+		}
+		if ( isset( $_POST['location_fax'] ) && !empty($_POST['location_fax']) ) {
+			update_post_meta( $location_id, 'location_fax', $_POST['location_fax'] );
+		}
+		if ( isset( $_POST['location_email'] ) && !empty($_POST['location_email']) ) {
+			update_post_meta( $location_id, 'location_email', $_POST['location_email'] );
+		}
+		if ( isset( $_POST['location_website'] ) && !empty($_POST['location_website']) ) {
+			update_post_meta( $location_id, 'location_website', $_POST['location_website'] );
+		}
+
+
+		// OPENINGHOURS
+		if ( isset( $_POST['location_openinghours'] ) && !empty($_POST['location_openinghours']) ) {
+			update_post_meta( $location_id, 'location_openinghours', $_POST['location_openinghours'] );
+		}
+		if ( isset( $_POST['location_closingdays'] ) && !empty($_POST['location_closingdays']) ) {
+			update_post_meta( $location_id, 'location_closingdays', $_POST['location_closingdays'] );
+		}
+		
+		// INFORMATION
+		if ( isset( $_POST['location_capacity_group'] ) && !empty($_POST['location_capacity_group']) ) {
+			update_post_meta( $location_id, 'location_capacity_group', $_POST['location_capacity_group'] );
+		}
+		if ( isset( $_POST['location_capacity_inside'] ) && !empty($_POST['location_capacity_inside']) ) {
+			update_post_meta( $location_id, 'location_capacity_inside', $_POST['location_capacity_inside'] );
+		}
+		if ( isset( $_POST['location_capacity_outside'] ) && !empty($_POST['location_capacity_outside']) ) {
+			update_post_meta( $location_id, 'location_capacity_outside', $_POST['location_capacity_outside'] );
+		}
+		update_post_meta( $location_id, 'location_childfriendly', $_POST['location_childfriendly'] );
+		update_post_meta( $location_id, 'location_bikefriendly', $_POST['location_bikefriendly'] );
+		update_post_meta( $location_id, 'location_wheelchair', $_POST['location_wheelchair'] );
+	}
+}
+
+
+add_filter( 'template_include', 'include_location_template_function', 1 );
+function include_location_template_function( $template_path ) {
+
+	if ( get_post_type() == 'location' ) {
+		if ( is_single() ) {
+			if ( $theme_file = locate_template( array( 'single-location.php' ) ) ) {
+				$template_path = $theme_file;
+			} else {
+				$template_path = plugin_dir_path( __FILE__ ) . '/single-location.php';
+			}
+		}else{
+			if ( $theme_file = locate_template( array( 'list-location.php' ) ) ) {
+				$template_path = $theme_file;
+			} else {
+				$template_path = plugin_dir_path( __FILE__ ) . '/list-location.php';
+			}
+		}
+	}
+	return $template_path;
+}
