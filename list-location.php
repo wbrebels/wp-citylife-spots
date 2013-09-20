@@ -18,28 +18,23 @@ get_header(); ?>
 			$posts_total = $loop->found_posts;
 
 			while ( $loop->have_posts() ) : $loop->the_post(); 
-				
+
+				if ( has_post_thumbnail()) {
+				   $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large');
+				}
+							
 				?>
 
 				<?php if($post_number % 3 == 1){ ?>
                 <div class="row">
                 <?php } ?>
-
-					<div class="span3">
-						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-							<header class="entry-header">
-
-								<h1 class="entry-title">
-									<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-								</h1>
-								<a href="<?php the_permalink(); ?>" rel="bookmark">
-									<?php the_post_thumbnail('medium'); ?>
-								</a>
-							</header>
-								
-						</article>
-					</div>
-
+                	<a href="<?php the_permalink() ?>">
+	                	<div class="spot span3">
+	                		<div class="spot-img has-img" style="background-image: url(<?php if(has_post_thumbnail()){ echo $large_image_url[0];} ?>);">
+	                		</div>
+	                		<div class="spot-name" style="border-color: #15a5db;"><?php the_title(); ?></div>
+	                	</div>
+                	</a>
 				<?php if($post_number % 3 == 0 or $post_number == $posts_total){ ?>
                 </div>
                 <?php } ?>
