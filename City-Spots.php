@@ -37,7 +37,7 @@ function create_location() {
 		)
 	);
 
-	flush_rewrite_rules();
+//	flush_rewrite_rules();
 }
 
 
