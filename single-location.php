@@ -2,8 +2,7 @@
 /*
 Template Name: Location Template
 */
-
-get_header(); ?>
+?>
 
 <div id="primary">
 	<div id="content" role="main">
@@ -94,4 +93,3 @@ get_header(); ?>
 </div>
 
 <?php wp_reset_query(); ?>
-<?php get_footer(); ?>
