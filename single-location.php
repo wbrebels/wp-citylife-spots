@@ -24,7 +24,7 @@ Template Name: Location Template
 
 					<div class="media">
 						<div class="pull-right">
-							<?php the_post_thumbnail(array('class' => 'media-object')); ?>
+							<?php the_post_thumbnail("medium", array('class' => 'media-object')); ?>
 						</div>
 						<div class="media-body">
 							<?php echo $post->post_content; ?>
