@@ -105,10 +105,7 @@ Template Name: Location Template
 			</article>
 
 			<hr/>
-			<?php 
-
-
-		?>
+			<a class="btn" href="<?php print $_SERVER['HTTP_REFERER'];?>">&laquo; Terug</a>
 	</div>
 </div>
 
