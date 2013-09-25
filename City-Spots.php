@@ -3,7 +3,7 @@
 Plugin Name: CitySpots
 Plugin URI: http://citylifeapp.com/
 Description: We can handle it all! Also Locations
-Version: 1.0.1
+Version: 1.0.2
 Author: Tom Claus
 Author URI: http://tomclaus.be/
 License: GPLv2
