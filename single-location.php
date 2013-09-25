@@ -21,14 +21,10 @@ Template Name: Location Template
 					?>
 
 					<h1 class="entry-title"><?php echo $post->post_title; ?></h1>
-
-					<div class="media">
-						<div class="pull-right">
-							<?php the_post_thumbnail("medium", array('class' => 'media-object')); ?>
-						</div>
-						<div class="media-body">
-							<?php echo $post->post_content; ?>
-						</div>
+					<div class="clearfix">
+						<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')); ?></div>
+							
+						<?php echo $post->post_content; ?>
 					</div>
 				
 				</header>
