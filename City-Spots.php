@@ -3,7 +3,7 @@
 Plugin Name: CitySpots
 Plugin URI: http://citylifeapp.com/
 Description: We can handle it all! Also Locations
-Version: 1.0
+Version: 1.0.1
 Author: Tom Claus
 Author URI: http://tomclaus.be/
 License: GPLv2
@@ -130,9 +130,9 @@ function location_openinghours_meta_box( $location ) {
 
 function location_information_meta_box( $location ) {
 	
-	$location_capacity_group 	= intval( get_post_meta($location->ID, 'location_capacity_group', true) );
-	$location_capacity_outside 	= intval( get_post_meta($location->ID, 'location_capacity_outside', true) );
-	$location_capacity_inside 	= intval( get_post_meta($location->ID, 'location_capacity_inside', true) );
+	$location_capacity_group 	= esc_attr( get_post_meta($location->ID, 'location_capacity_group', true) );
+	$location_capacity_outside 	= esc_attr( get_post_meta($location->ID, 'location_capacity_outside', true) );
+	$location_capacity_inside 	= esc_attr( get_post_meta($location->ID, 'location_capacity_inside', true) );
 	$location_childfriendly 	= esc_attr( get_post_meta($location->ID, 'location_childfriendly', true) );  
 	$location_bikefriendly 		= esc_attr( get_post_meta($location->ID, 'location_bikefriendly', true) );  
 	$location_wheelchair 		= esc_attr( get_post_meta($location->ID, 'location_wheelchair', true) );  
@@ -141,15 +141,15 @@ function location_information_meta_box( $location ) {
 		<table width="100%">
 			<tr>
 				<td width="25%">Capacity Groups <small>(number of People)</small></td>
-				<td width="75%"><input type="number" size="3" name="location_capacity_group" value="<?php echo $location_capacity_group; ?>" /></td>
+				<td width="75%"><input type="text" size="50" name="location_capacity_group" value="<?php echo $location_capacity_group; ?>" /></td>
 			</tr>
 			<tr>
 				<td>Seats inside</td>
-				<td><input type="number" size="3" name="location_capacity_inside" value="<?php echo $location_capacity_inside; ?>" /></td>
+				<td><input type="text" size="50" name="location_capacity_inside" value="<?php echo $location_capacity_inside; ?>" /></td>
 			</tr>			
 			<tr>
 				<td>Seats terrace</td>
-				<td><input type="number" size="3" name="location_capacity_outside" value="<?php echo $location_capacity_outside; ?>" /></td>
+				<td><input type="text" size="50" name="location_capacity_outside" value="<?php echo $location_capacity_outside; ?>" /></td>
 			</tr>		
 			<tr>
 				<td>Child friendly?</td>
@@ -174,56 +174,27 @@ function add_location_detail_fields( $location_id, $location ) {
 	if ( $location->post_type == 'location' ) {
 		
 		// ADRESS
-		if ( isset( $_POST['location_street'] ) && !empty($_POST['location_street']) ) {
-			update_post_meta( $location_id, 'location_street', $_POST['location_street'] );
-		}
-		if ( isset( $_POST['location_number'] ) && !empty($_POST['location_number'])) {
-			update_post_meta( $location_id, 'location_number', $_POST['location_number'] );
-		}
-		if ( isset( $_POST['location_box'] ) && !empty($_POST['location_box']) ) {
-			update_post_meta( $location_id, 'location_box', $_POST['location_box'] );
-		}
-		if ( isset( $_POST['location_zipcode'] ) && !empty($_POST['location_zipcode']) ) {
-			update_post_meta( $location_id, 'location_zipcode', $_POST['location_zipcode'] );
-		}
-		if ( isset( $_POST['location_city'] ) && !empty($_POST['location_city']) ) {
-			update_post_meta( $location_id, 'location_city', $_POST['location_city'] );
-		}
+		update_post_meta( $location_id, 'location_street', $_POST['location_street'] );
+		update_post_meta( $location_id, 'location_number', $_POST['location_number'] );
+		update_post_meta( $location_id, 'location_box', $_POST['location_box'] );
+		update_post_meta( $location_id, 'location_city', $_POST['location_city'] );
 
 
 		// CONTACT
-		if ( isset( $_POST['location_phone'] ) && !empty($_POST['location_phone']) ) {
-			update_post_meta( $location_id, 'location_phone', $_POST['location_phone'] );
-		}
-		if ( isset( $_POST['location_fax'] ) && !empty($_POST['location_fax']) ) {
-			update_post_meta( $location_id, 'location_fax', $_POST['location_fax'] );
-		}
-		if ( isset( $_POST['location_email'] ) && !empty($_POST['location_email']) ) {
-			update_post_meta( $location_id, 'location_email', $_POST['location_email'] );
-		}
-		if ( isset( $_POST['location_website'] ) && !empty($_POST['location_website']) ) {
-			update_post_meta( $location_id, 'location_website', $_POST['location_website'] );
-		}
+		update_post_meta( $location_id, 'location_phone', $_POST['location_phone'] );
+		update_post_meta( $location_id, 'location_fax', $_POST['location_fax'] );
+		update_post_meta( $location_id, 'location_email', $_POST['location_email'] );
+		update_post_meta( $location_id, 'location_website', $_POST['location_website'] );
 
 
 		// OPENINGHOURS
-		if ( isset( $_POST['location_openinghours'] ) && !empty($_POST['location_openinghours']) ) {
-			update_post_meta( $location_id, 'location_openinghours', $_POST['location_openinghours'] );
-		}
-		if ( isset( $_POST['location_closingdays'] ) && !empty($_POST['location_closingdays']) ) {
-			update_post_meta( $location_id, 'location_closingdays', $_POST['location_closingdays'] );
-		}
+		update_post_meta( $location_id, 'location_openinghours', $_POST['location_openinghours'] );
+		update_post_meta( $location_id, 'location_closingdays', $_POST['location_closingdays'] );
 		
 		// INFORMATION
-		if ( isset( $_POST['location_capacity_group'] ) && !empty($_POST['location_capacity_group']) ) {
-			update_post_meta( $location_id, 'location_capacity_group', $_POST['location_capacity_group'] );
-		}
-		if ( isset( $_POST['location_capacity_inside'] ) && !empty($_POST['location_capacity_inside']) ) {
-			update_post_meta( $location_id, 'location_capacity_inside', $_POST['location_capacity_inside'] );
-		}
-		if ( isset( $_POST['location_capacity_outside'] ) && !empty($_POST['location_capacity_outside']) ) {
-			update_post_meta( $location_id, 'location_capacity_outside', $_POST['location_capacity_outside'] );
-		}
+		update_post_meta( $location_id, 'location_capacity_group', $_POST['location_capacity_group'] );
+		update_post_meta( $location_id, 'location_capacity_inside', $_POST['location_capacity_inside'] );
+		update_post_meta( $location_id, 'location_capacity_outside', $_POST['location_capacity_outside'] );
 		update_post_meta( $location_id, 'location_childfriendly', $_POST['location_childfriendly'] );
 		update_post_meta( $location_id, 'location_bikefriendly', $_POST['location_bikefriendly'] );
 		update_post_meta( $location_id, 'location_wheelchair', $_POST['location_wheelchair'] );
