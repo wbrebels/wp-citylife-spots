@@ -177,6 +177,7 @@ function add_location_detail_fields( $location_id, $location ) {
 		update_post_meta( $location_id, 'location_street', $_POST['location_street'] );
 		update_post_meta( $location_id, 'location_number', $_POST['location_number'] );
 		update_post_meta( $location_id, 'location_box', $_POST['location_box'] );
+		update_post_meta( $location_id, 'location_zipcode', $_POST['location_zipcode'] );
 		update_post_meta( $location_id, 'location_city', $_POST['location_city'] );
 
 
