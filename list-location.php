@@ -8,6 +8,8 @@ Template Name: Location Template
 <div id="primary">
 	<div id="content" role="main">
 
+		<h1>Handelaars</h1>
+
 		<?php 
 			query_posts(array('post_type'=>'location')); 
 
