@@ -67,40 +67,52 @@ Template Name: Location Template
 					<p>
 
 						<?php
-							if(get_post_meta(get_the_ID(), 'location_openinghours', true) !== ""){
-								echo "<strong>Openingsuren:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_openinghours', true )) . "<br />";
+							$location_openinghours = get_post_meta(get_the_ID(), 'location_openinghours', true);
+							$location_closingdays = get_post_meta(get_the_ID(), 'location_closingdays', true);
+
+							if($location_openinghours !== ""){
+								echo "<strong>Openingsuren:</strong> " . esc_attr($location_openinghours) . "<br />";
 							}
-							if(get_post_meta(get_the_ID(), 'location_closingdays', true) !== ""){
-								echo "<strong>Sluitingsdag:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_closingdays', true )) . "<br />";
+							if($location_closingdays !== ""){
+								echo "<strong>Sluitingsdag:</strong> " . esc_attr($location_closingdays) . "<br />";
 							}
 						?>
 					</p>
 
-					<hr />
+					<?php if($location_openinghours or $location_closingdays){ ?><hr /><?php } ?>
 					<p>
 
 						<?php
-							if(get_post_meta(get_the_ID(), 'location_capacity_group', true) !== ""){
-								echo "<strong>Groups Capacity:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_group', true )) . " | ";
+							$location_capacity_group = get_post_meta(get_the_ID(), 'location_capacity_group', true);
+							$location_capacity_outside = get_post_meta(get_the_ID(), 'location_capacity_outside', true);
+							$location_capacity_inside = get_post_meta(get_the_ID(), 'location_capacity_inside', true);
+
+							$location_childfriendly = get_post_meta( get_the_ID(), 'location_childfriendly', true );
+							$location_bikefriendly = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
+							$location_wheelchair = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
+
+							if($location_capacity_group !== ""){
+								echo "<strong>Totale capaciteit:</strong> " . esc_attr($location_capacity_group) . " | ";
 							}
-							if(get_post_meta(get_the_ID(), 'location_capacity_outside', true) !== ""){
-								echo "<strong>Seats outside:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_outside', true )) . " | ";
+							if($location_capacity_outside !== ""){
+								echo "<strong>Zitplaatsen buiten:</strong> " . esc_attr($location_capacity_outside) . " | ";
 							}
-							if(get_post_meta(get_the_ID(), 'location_capacity_inside', true) !== ""){
-								echo "<strong>Seats inside:</strong> " . esc_attr(get_post_meta( get_the_ID(), 'location_capacity_inside', true )) . " | ";
+							if($location_capacity_inside !== ""){
+								echo "<strong>Zitplaatsen binnen:</strong> " . esc_attr($location_capacity_inside) . " | ";
 							}
 						?>
 						
-						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_childfriendly', true ) ) == "on" ? "Childfriendly | " : ""; ?>
-						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_bikefriendly', true ) ) == "on" ? "Bicyclefriendly | " : ""; ?>
-						<?php echo esc_attr( get_post_meta( get_the_ID(), 'location_wheelchair', true ) ) == "on" ? "Accessible for wheelchair users" : ""; ?>
+						<?php echo esc_attr( $location_childfriendly ) == "on" ? "Voorzieningen voor kinderen | " : ""; ?>
+						<?php echo esc_attr( $location_bikefriendly ) == "on" ? "Geschikt voor fietsers | " : ""; ?>
+						<?php echo esc_attr( $location_wheelchair ) == "on" ? "Toegankelijk voor rolstoelgebruikers" : ""; ?>
 					</p>
+
+					<?php if($location_capacity_group or $location_capacity_outside or $location_capacity_inside or $location_childfriendly or $location_bikefriendly or $location_wheelchair) { ?><hr/><?php } ?>
 					
 				</div>
 
 			</article>
 
-			<hr/>
 			<a class="btn" href="<?php print $_SERVER['HTTP_REFERER'];?>">&laquo; Terug</a>
 	</div>
 </div>
