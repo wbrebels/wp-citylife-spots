@@ -36,8 +36,6 @@ function create_location() {
 			'has_archive' 			=> true
 		)
 	);
-
-//	flush_rewrite_rules();
 }
 
 
