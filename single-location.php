@@ -92,19 +92,19 @@ Template Name: Location Template
 							$location_wheelchair = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
 
 							if($location_capacity_group !== ""){
-								echo "<strong>Capaciteit groepen:</strong> " . esc_attr($location_capacity_group) . " | ";
+								echo "<strong>Capaciteit groepen:</strong> " . esc_attr($location_capacity_group);
 							}
 							if($location_capacity_outside !== ""){
-								echo "<strong>Plaatsen terras:</strong> " . esc_attr($location_capacity_outside) . " | ";
+								echo " | <strong>Plaatsen terras:</strong> " . esc_attr($location_capacity_outside);
 							}
 							if($location_capacity_inside !== ""){
-								echo "<strong>Plaatsen binnen:</strong> " . esc_attr($location_capacity_inside) . " | ";
+								echo " | <strong>Plaatsen binnen:</strong> " . esc_attr($location_capacity_inside);
 							}
 						?>
 						
-						<?php echo esc_attr( $location_childfriendly ) == "on" ? "Kindvriendelijk | " : ""; ?>
-						<?php echo esc_attr( $location_bikefriendly ) == "on" ? "Fietsvriendelijk | " : ""; ?>
-						<?php echo esc_attr( $location_wheelchair ) == "on" ? "Toegankelijkheid rolstoelgebruikers" : ""; ?>
+						<?php echo esc_attr( $location_childfriendly ) == "on" ? " | Kindvriendelijk" : ""; ?>
+						<?php echo esc_attr( $location_bikefriendly ) == "on" ? " | Fietsvriendelijk" : ""; ?>
+						<?php echo esc_attr( $location_wheelchair ) == "on" ? " | Toegankelijkheid rolstoelgebruikers" : ""; ?>
 					</p>
 
 					<?php if($location_capacity_group or $location_capacity_outside or $location_capacity_inside or $location_childfriendly or $location_bikefriendly or $location_wheelchair) { ?><hr/><?php } ?>
