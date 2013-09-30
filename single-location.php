@@ -74,7 +74,7 @@ Template Name: Location Template
 								echo "<strong>Openingsuren:</strong> " . esc_attr($location_openinghours) . "<br />";
 							}
 							if($location_closingdays !== ""){
-								echo "<strong>Sluitingsdag:</strong> " . esc_attr($location_closingdays) . "<br />";
+								echo "<strong>Sluitingsdagen:</strong> " . esc_attr($location_closingdays) . "<br />";
 							}
 						?>
 					</p>
@@ -92,19 +92,19 @@ Template Name: Location Template
 							$location_wheelchair = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
 
 							if($location_capacity_group !== ""){
-								echo "<strong>Totale capaciteit:</strong> " . esc_attr($location_capacity_group) . " | ";
+								echo "<strong>Capaciteit groepen:</strong> " . esc_attr($location_capacity_group) . " | ";
 							}
 							if($location_capacity_outside !== ""){
-								echo "<strong>Zitplaatsen buiten:</strong> " . esc_attr($location_capacity_outside) . " | ";
+								echo "<strong>Plaatsen terras:</strong> " . esc_attr($location_capacity_outside) . " | ";
 							}
 							if($location_capacity_inside !== ""){
-								echo "<strong>Zitplaatsen binnen:</strong> " . esc_attr($location_capacity_inside) . " | ";
+								echo "<strong>Plaatsen binnen:</strong> " . esc_attr($location_capacity_inside) . " | ";
 							}
 						?>
 						
-						<?php echo esc_attr( $location_childfriendly ) == "on" ? "Voorzieningen voor kinderen | " : ""; ?>
-						<?php echo esc_attr( $location_bikefriendly ) == "on" ? "Geschikt voor fietsers | " : ""; ?>
-						<?php echo esc_attr( $location_wheelchair ) == "on" ? "Toegankelijk voor rolstoelgebruikers" : ""; ?>
+						<?php echo esc_attr( $location_childfriendly ) == "on" ? "Kindvriendelijk | " : ""; ?>
+						<?php echo esc_attr( $location_bikefriendly ) == "on" ? "Fietsvriendelijk | " : ""; ?>
+						<?php echo esc_attr( $location_wheelchair ) == "on" ? "Toegankelijkheid rolstoelgebruikers" : ""; ?>
 					</p>
 
 					<?php if($location_capacity_group or $location_capacity_outside or $location_capacity_inside or $location_childfriendly or $location_bikefriendly or $location_wheelchair) { ?><hr/><?php } ?>
