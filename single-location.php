@@ -35,16 +35,6 @@ Template Name: Location Template
 					<div class="row">
 						<div class="span4">
 						<?php
-							if(get_post_meta(get_the_ID(), 'location_street', true) !== ""){
-								echo esc_attr( get_post_meta(get_the_ID(), 'location_street', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_number', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_box', true )) . "<br />";
-							}
-							if(get_post_meta(get_the_ID(), 'location_city', true) !== ""){
-								echo "B-" . esc_attr(get_post_meta( get_the_ID(), 'location_zipcode', true )) . " " . esc_attr( get_post_meta( get_the_ID(), 'location_city', true )) . "<br />";
-							}
-						?>
-						</div>
-						<div class="span5">
-						<?php
 							if(get_post_meta(get_the_ID(), 'location_phone', true) !== ""){
 								echo "T. " . esc_attr(get_post_meta( get_the_ID(), 'location_phone', true )) . "<br />";
 							}
@@ -58,6 +48,16 @@ Template Name: Location Template
 							if(get_post_meta(get_the_ID(), 'location_website', true) !== ""){
 								$location_website = esc_attr(get_post_meta( get_the_ID(), 'location_website', true ));
 								echo '<a href="http://' . str_replace($location_website, "http://", "") . '">' . $location_website . '</a>' . "<br />";
+							}
+						?>
+						</div>
+						<div class="span5">
+						<?php
+							if(get_post_meta(get_the_ID(), 'location_street', true) !== ""){
+								echo esc_attr( get_post_meta(get_the_ID(), 'location_street', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_number', true )) . " " . esc_attr(get_post_meta(get_the_ID(), 'location_box', true )) . "<br />";
+							}
+							if(get_post_meta(get_the_ID(), 'location_city', true) !== ""){
+								echo "B-" . esc_attr(get_post_meta( get_the_ID(), 'location_zipcode', true )) . " " . esc_attr( get_post_meta( get_the_ID(), 'location_city', true )) . "<br />";
 							}
 						?>
 						</div>
