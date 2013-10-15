@@ -47,7 +47,7 @@ Template Name: Location Template
 							}
 							if(get_post_meta(get_the_ID(), 'location_website', true) !== ""){
 								$location_website = esc_attr(get_post_meta( get_the_ID(), 'location_website', true ));
-								echo '<a href="http://' . str_replace($location_website, "http://", "") . '">' . $location_website . '</a>' . "<br />";
+								echo '<a href="http://' . str_replace("http://", "", $location_website) . '">' . $location_website . '</a>' . "<br />";
 							}
 						?>
 						</div>
