@@ -13,9 +13,7 @@ Template Name: Location Template
 			?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
-
 					
-
 					<?php
 						$post = get_post();
 					?>
@@ -79,36 +77,7 @@ Template Name: Location Template
 						?>
 					</p>
 
-					<?php if($location_openinghours or $location_closingdays){ ?><hr /><?php } ?>
-					<p>
-
-						<?php
-							$location_capacity_group = get_post_meta(get_the_ID(), 'location_capacity_group', true);
-							$location_capacity_outside = get_post_meta(get_the_ID(), 'location_capacity_outside', true);
-							$location_capacity_inside = get_post_meta(get_the_ID(), 'location_capacity_inside', true);
-
-							$location_childfriendly = get_post_meta( get_the_ID(), 'location_childfriendly', true );
-							$location_bikefriendly = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
-							$location_wheelchair = get_post_meta( get_the_ID(), 'location_bikefriendly', true );
-
-							if($location_capacity_group !== ""){
-								echo "<strong>Capaciteit groepen:</strong> " . esc_attr($location_capacity_group);
-							}
-							if($location_capacity_outside !== ""){
-								echo " | <strong>Plaatsen terras:</strong> " . esc_attr($location_capacity_outside);
-							}
-							if($location_capacity_inside !== ""){
-								echo " | <strong>Plaatsen binnen:</strong> " . esc_attr($location_capacity_inside);
-							}
-						?>
-						
-						<?php echo esc_attr( $location_childfriendly ) == "on" ? " | Kindvriendelijk" : ""; ?>
-						<?php echo esc_attr( $location_bikefriendly ) == "on" ? " | Fietsvriendelijk" : ""; ?>
-						<?php echo esc_attr( $location_wheelchair ) == "on" ? " | Toegankelijkheid rolstoelgebruikers" : ""; ?>
-					</p>
-
-					<?php if($location_capacity_group or $location_capacity_outside or $location_capacity_inside or $location_childfriendly or $location_bikefriendly or $location_wheelchair) { ?><hr/><?php } ?>
-					
+					<?php if($location_openinghours or $location_closingdays){ ?><hr /><?php } ?>					
 				</div>
 
 			</article>

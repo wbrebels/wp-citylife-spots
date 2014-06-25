@@ -31,7 +31,7 @@ function create_location() {
 			'public' 				=> true,
 			'menu_position' 		=> 5,
 			'supports'				=> array( 'title', 'editor', 'thumbnail' ),
-			'taxonomies' 			=> array( '' ),
+			'taxonomies' 			=> array( 'category' ),
 			'menu_icon' 			=> plugins_url( 'images/image.png', __FILE__ ),
 			'has_archive' 			=> true
 		)
@@ -128,39 +128,19 @@ function location_openinghours_meta_box( $location ) {
 
 function location_information_meta_box( $location ) {
 	
-	$location_capacity_group 	= esc_attr( get_post_meta($location->ID, 'location_capacity_group', true) );
-	$location_capacity_outside 	= esc_attr( get_post_meta($location->ID, 'location_capacity_outside', true) );
-	$location_capacity_inside 	= esc_attr( get_post_meta($location->ID, 'location_capacity_inside', true) );
-	$location_childfriendly 	= esc_attr( get_post_meta($location->ID, 'location_childfriendly', true) );  
-	$location_bikefriendly 		= esc_attr( get_post_meta($location->ID, 'location_bikefriendly', true) );  
-	$location_wheelchair 		= esc_attr( get_post_meta($location->ID, 'location_wheelchair', true) );  
+	$location_longitude 	= esc_attr( get_post_meta($location->ID, 'location_longitude', true) );
+	$location_latitude    	= esc_attr( get_post_meta($location->ID, 'location_latitude', true) ); 
 
 	?>	
 		<table width="100%">
 			<tr>
-				<td width="25%">Capacity Groups <small>(number of People)</small></td>
-				<td width="75%"><input type="text" size="50" name="location_capacity_group" value="<?php echo $location_capacity_group; ?>" /></td>
+				<td width="25%">Longitude</td>
+				<td width="75%"><input type="text" size="50" name="location_longitude" value="<?php echo $location_longitude; ?>" /></td>
 			</tr>
 			<tr>
-				<td>Seats inside</td>
-				<td><input type="text" size="50" name="location_capacity_inside" value="<?php echo $location_capacity_inside; ?>" /></td>
-			</tr>			
-			<tr>
-				<td>Seats terrace</td>
-				<td><input type="text" size="50" name="location_capacity_outside" value="<?php echo $location_capacity_outside; ?>" /></td>
-			</tr>		
-			<tr>
-				<td>Child friendly?</td>
-				<td><input type="checkbox" name="location_childfriendly" <?php checked( $location_childfriendly, 'on' ); ?> /> </td>		
-			</tr>
-			<tr>
-				<td>Bicylce friendly?</td>
-				<td><input type="checkbox" name="location_bikefriendly" <?php checked( $location_bikefriendly, 'on' ); ?> /> </td>		
-			</tr>
-			<tr>
-				<td>Accessible for wheelchair users?</td>
-				<td><input type="checkbox" name="location_wheelchair" <?php checked( $location_wheelchair, 'on' ); ?> /> </td>		
-			</tr>
+				<td>Latitude</td>
+				<td><input type="text" size="50" name="location_latitude" value="<?php echo $location_latitude; ?>" /></td>
+			</tr>						
 		</table>
 	<?php 
 }
@@ -191,12 +171,8 @@ function add_location_detail_fields( $location_id, $location ) {
 		update_post_meta( $location_id, 'location_closingdays', $_POST['location_closingdays'] );
 		
 		// INFORMATION
-		update_post_meta( $location_id, 'location_capacity_group', $_POST['location_capacity_group'] );
-		update_post_meta( $location_id, 'location_capacity_inside', $_POST['location_capacity_inside'] );
-		update_post_meta( $location_id, 'location_capacity_outside', $_POST['location_capacity_outside'] );
-		update_post_meta( $location_id, 'location_childfriendly', $_POST['location_childfriendly'] );
-		update_post_meta( $location_id, 'location_bikefriendly', $_POST['location_bikefriendly'] );
-		update_post_meta( $location_id, 'location_wheelchair', $_POST['location_wheelchair'] );
+		update_post_meta( $location_id, 'location_longitude', $_POST['location_longitude'] );
+		update_post_meta( $location_id, 'location_latitude', $_POST['location_latitude'] );
 	}
 }
 
