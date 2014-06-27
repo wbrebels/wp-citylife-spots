@@ -109,6 +109,7 @@ function location_openinghours_meta_box( $location ) {
 	
 	$location_openinghours 		= esc_attr( get_post_meta($location->ID, 'location_openinghours', true) );
 	$location_closingdays 		= esc_attr( get_post_meta($location->ID, 'location_closingdays', true) );
+    $location_extra_info 		= esc_attr( get_post_meta($location->ID, 'location_extra_info', true) );
 
 	?>
 		<table width="100%">
@@ -119,7 +120,13 @@ function location_openinghours_meta_box( $location ) {
 			<tr>
 				<td>Closing days</td>
 				<td><input type="text" size="50" name="location_closingdays" value="<?php echo $location_closingdays; ?>" /></td>
-			</tr>			
+			</tr>
+            <tr>
+				<td>Extra info</td>
+				<td>
+                    <textarea cols="50" rows='5' name="location_extra_info"><?php echo $location_extra_info; ?></textarea></td>
+                </td>
+			</tr>
 		</table>
 	<?php
 }
@@ -169,6 +176,7 @@ function add_location_detail_fields( $location_id, $location ) {
 		// OPENINGHOURS
 		update_post_meta( $location_id, 'location_openinghours', $_POST['location_openinghours'] );
 		update_post_meta( $location_id, 'location_closingdays', $_POST['location_closingdays'] );
+        update_post_meta( $location_id, 'location_extra_info', $_POST['location_extra_info'] );
 		
 		// INFORMATION
 		update_post_meta( $location_id, 'location_longitude', $_POST['location_longitude'] );
