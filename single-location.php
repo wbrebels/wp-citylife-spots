@@ -20,9 +20,18 @@ Template Name: Location Template
 
 					<h1 class="entry-title"><?php echo $post->post_title; ?></h1>
 					<div class="clearfix">
-						<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')); ?></div>
-							
-						<?php echo $post->post_content; ?>
+						<?php
+						if($post->post_content){
+						?>
+							<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')); ?></div>	
+							<?php echo $post->post_content; ?>
+						<?php
+						} else {
+						?>
+							<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail')); ?></div>
+						<?php
+						}
+						?>
 					</div>
 				
 				</header>
