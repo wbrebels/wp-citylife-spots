@@ -11,7 +11,7 @@ Template Name: Location Template
 		
 		<?php
 		// The Query
-		query_posts( array('post_type'=>'location', 'posts_per_page' => -1 ) );
+		query_posts( array('post_type'=>'location', 'posts_per_page' => -1, 'orderby'=> 'title', 'order' => 'ASC' ) );
 
 		$post_number = 1;
 		$posts_total = $wp_query->found_posts;
