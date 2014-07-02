@@ -93,7 +93,8 @@ Template Name: Location Template
 					</div>
 					
 					<hr>
-
+					
+					<?php if($location_latitude && $location_longitude){ ?>
 					<div class="row">
 						<div class="span9">
 							
@@ -125,8 +126,8 @@ Template Name: Location Template
 							<div id="map-canvas" style="height: 300px; img: width: auto;"></div>
 						</div>
 					</div>
-
 					<hr />
+					<?php } ?>
 					<p>
 
 						<?php
