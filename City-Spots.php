@@ -41,10 +41,30 @@ function create_location() {
 
 add_action( 'admin_init', 'location_admin' );
 function location_admin() {
+    add_meta_box( 'location_key_box', 'Keys', 'location_key_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_address_meta_box', 'Address', 'location_address_meta_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_contact_meta_box', 'Contact information', 'location_contact_meta_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_openinghours_meta_box', 'Openinghours', 'location_openinghours_meta_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_information_meta_box', 'Information', 'location_information_meta_box', 'location', 'normal', 'high' );
+}
+
+function location_key_box( $location ) {
+	
+	$location_pkey 	= esc_attr( get_post_meta($location->ID, 'location_pkey', true) );
+    $location_slug 	= esc_attr( get_post_meta($location->ID, 'location_slug', true) );
+
+	?>	
+		<table width="100%">
+			<tr>
+				<td width="25%">Primary key</td>
+				<td width="75%"><input type="text" size="50" name="location_pkey" value="<?php echo $location_pkey; ?>" /></td>
+			</tr>
+			<tr>
+				<td>Slug</td>
+				<td><input type="text" size="50" name="location_slug" value="<?php echo $location_slug; ?>" /></td>
+			</tr>						
+		</table>
+	<?php 
 }
 
 function location_address_meta_box( $location ) {
@@ -158,7 +178,11 @@ function add_location_detail_fields( $location_id, $location ) {
 	
 	if ( $location->post_type == 'location' ) {
 		
-		// ADRESS
+		// KEYS
+		update_post_meta( $location_id, 'location_pkey', $_POST['location_pkey'] );
+		update_post_meta( $location_id, 'location_slug', $_POST['location_slug'] );
+        
+        // ADRESS
 		update_post_meta( $location_id, 'location_street', $_POST['location_street'] );
 		update_post_meta( $location_id, 'location_number', $_POST['location_number'] );
 		update_post_meta( $location_id, 'location_box', $_POST['location_box'] );
