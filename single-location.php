@@ -34,18 +34,8 @@ Template Name: Location Template
 				<header class="entry-header">
 					<h1 class="entry-title"><?php echo $location_name; ?></h1>
 					<div class="clearfix">
-						<?php
-						if($location_description){
-						?>
-							<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')) ?></div>	
-							<?php echo $location_description; ?>
-						<?php
-						} else {
-						?>
-							<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail')); ?></div>
-						<?php
-						}
-						?>
+						<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')) ?></div>	
+						<?php echo $location_description; ?>
 					</div>
 				</header>
 				<div class="entry-content">
