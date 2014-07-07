@@ -103,7 +103,15 @@ Template Name: Location Template
 
 								var marker = new google.maps.Marker({
 								    position: myLatlng,
-								    title: "<?php echo $location_name; ?>"
+								    title: "<?php echo $location_name; ?>",
+								    url: "http://maps.google.com/maps?&z=10&q=<?php echo $location_latitude; ?>+<?php echo $location_longitude; ?>&ll=<?php echo $location_latitude; ?>+<?php echo $location_longitude; ?>"
+								});
+
+								google.maps.event.addListener(marker, 'click', function() {
+									window.open(
+										marker.url,
+										'_blank'
+									);
 								});
 
 								// To add the marker to the map, call setMap();
@@ -111,6 +119,8 @@ Template Name: Location Template
 							}
 
 							google.maps.event.addDomListener(window, 'load', initializeLocationMap);
+
+								
 						    </script>
 
 							<div id="map-canvas" style="height: 300px; img: width: auto;"></div>
