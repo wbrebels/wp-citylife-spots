@@ -24,6 +24,16 @@ Template Name: Location Template
 			$location_address_city = esc_attr( get_post_meta( get_the_ID(), 'location_city', true ));
 			$location_address_zipcode = "B-" . esc_attr(get_post_meta( get_the_ID(), 'location_zipcode', true ));
 
+			$location_address_full = ''; // $location_address_street . ' ' . $location_address_number . ' ' . $location_address_city;
+			$location_address_full .= ($location_address_street ?  $location_address_street : '');
+			$location_address_full .= ($location_address_number ?  ' ' . $location_address_number : '');
+			$location_address_full .= ($location_address_box ?  ' ' . $location_address_box : '');
+			$location_address_full .= ($location_address_city ?  ' ' . $location_address_city : '');
+			$location_address_full .= ($location_address_zipcode ?  ' ' . $location_address_zipcode : '');
+
+			$location_address_url_encoded = urlencode($location_address_full);
+			$location_address_directions_url = "https://www.google.com/maps?saddr=Current+Location&daddr=" . $location_address_url_encoded;
+
 			$location_latitude = get_post_meta(get_the_ID(), 'location_latitude', true);
 			$location_longitude = get_post_meta(get_the_ID(), 'location_longitude', true);
 
@@ -67,6 +77,7 @@ Template Name: Location Template
 									echo $location_address_zipcode . " " . $location_address_city . "<br />";
 								}
 							?>
+								<a href="<?php echo $location_address_directions_url; ?>" target="_blank">Routebeschrijving</a>
 							</div>
 						<?php } else { ?>
 							<div class="span9">
@@ -78,6 +89,7 @@ Template Name: Location Template
 									echo $location_address_zipcode . " " . $location_address_city . "<br />";
 								}
 							?>
+								<a href="<?php echo $location_address_directions_url; ?>" target="_blank">Routebeschrijving</a>
 							</div>
 						<?php } ?>
 					</div>
@@ -104,7 +116,7 @@ Template Name: Location Template
 								var marker = new google.maps.Marker({
 								    position: myLatlng,
 								    title: "<?php echo $location_name; ?>",
-								    url: "http://maps.google.com/maps?&z=10&q=<?php echo $location_latitude; ?>+<?php echo $location_longitude; ?>&ll=<?php echo $location_latitude; ?>+<?php echo $location_longitude; ?>"
+								    url: "<?php echo $location_address_directions_url ?>"
 								});
 
 								google.maps.event.addListener(marker, 'click', function() {
@@ -123,7 +135,13 @@ Template Name: Location Template
 								
 						    </script>
 
-							<div id="map-canvas" style="height: 300px; img: width: auto;"></div>
+							<style>
+								/* Fix map controls looking squashed */
+								#map-canvas img{
+									max-width: none;
+								}
+							</style>
+							<div id="map-canvas" style="height: 300px;"></div>
 						</div>
 					</div>
 					<hr />
