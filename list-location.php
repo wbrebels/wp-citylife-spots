@@ -7,7 +7,7 @@ Template Name: Location Template
 <div id="primary">
 	<div id="content" role="main">
 
-		<h1>Handelaars</h1>
+		<h1>Winkels</h1>
 		<?php 
 		$post_number = 1;
 		if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -33,7 +33,6 @@ Template Name: Location Template
 		<?php endwhile; ?>
 		<div class="nav-next alignleft"><?php previous_posts_link( 'Terug' ); ?></div>
 		<div class="nav-previous alignright"><?php next_posts_link( 'Verder' ); ?></div>
-		<?php echo paginate_links(); ?>
 		<?php else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
