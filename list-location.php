@@ -7,7 +7,7 @@ Template Name: Location Template
 <div id="primary">
 	<div id="content" role="main">
 
-		<h1>Winkels</h1>
+		<h1>Winkels (<?php echo wp_count_posts( 'location' )->publish; ?> resultaten)</h1>
 		<?php 
 		$post_number = 1;
 		if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -34,7 +34,7 @@ Template Name: Location Template
 		<div class="nav-next alignleft"><?php previous_posts_link( 'Terug' ); ?></div>
 		<div class="nav-previous alignright"><?php next_posts_link( 'Verder' ); ?></div>
 		<?php else: ?>
-		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+		<p><?php _e('Sorry, er werden geen winkels gevonden.'); ?></p>
 		<?php endif; ?>
 	</div>
 </div>
