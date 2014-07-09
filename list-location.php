@@ -8,7 +8,8 @@ Template Name: Location Template
 	<div id="content" role="main">
 
 		<h1>Winkels (<?php echo wp_count_posts( 'location' )->publish; ?> resultaten)</h1>
-		<?php 
+		<?php
+		wp('posts_per_page=15');
 		$post_number = 1;
 		if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<?php if($post_number % 3 == 1): ?>
