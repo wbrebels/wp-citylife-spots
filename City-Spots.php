@@ -31,7 +31,7 @@ function create_location() {
 			'public' 				=> true,
 			'menu_position' 		=> 5,
 			'supports'				=> array( 'title', 'editor', 'thumbnail' ),
-			'taxonomies' 			=> array( 'category' ),
+			'taxonomies' 			=> array('category'),
 			'menu_icon' 			=> plugins_url( 'images/image.png', __FILE__ ),
 			'has_archive' 			=> true
 		)

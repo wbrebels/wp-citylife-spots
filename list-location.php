@@ -7,7 +7,11 @@ Template Name: Location Template
 <div id="primary">
 	<div id="content" role="main">
 
-		<h1>Winkels (<?php echo wp_count_posts( 'location' )->publish; ?> resultaten)</h1>
+		<?php if (single_cat_title('', false)): ?>
+			<h1><?php single_cat_title( '', true ); ?> (<?php echo $wp_query->found_posts; ?> resultaten)</h1>	
+		<?php else: ?>
+			<h1>Winkels (<?php echo $wp_query->found_posts; ?> resultaten)</h1>
+		<?php endif ?>
 		<?php
 		wp('posts_per_page=15');
 		$post_number = 1;
