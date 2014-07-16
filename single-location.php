@@ -3,6 +3,11 @@
 Template Name: Location Template
 */
 ?>
+<script type="text/javascript">
+	mixpanel.track("Location viewed", {
+		"location": "<?php echo get_permalink(); ?>"
+	});
+</script>
 <div id="primary">
 	<div id="content" role="main">
 
