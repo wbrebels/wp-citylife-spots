@@ -4,6 +4,20 @@ Template Name: Location Template
 */
 ?>
 
+<?php if (single_cat_title('', false)): ?>
+	<script>
+		mixpanel.track("Category viewed", {
+	        "category": "<?php single_cat_title( '', true ); ?>"
+	    });
+	</script>
+<?php else: ?>
+	<script>
+		mixpanel.track("Category viewed", {
+	        "category": "All"
+	    });
+	</script>
+<?php endif ?>
+
 <div id="primary">
 	<div id="content" role="main">
 
