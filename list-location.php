@@ -7,7 +7,7 @@ Template Name: Location Template
 <?php if (single_cat_title('', false)): ?>
 	<script>
 		mixpanel.track("Category viewed", {
-	        "SIL_category": "<?php single_cat_title( '', true ); ?>"
+	        "SIL_category": "<?php echo html_entity_decode(single_cat_title( '', false )); ?>"
 	    });
 	</script>
 <?php else: ?>
