@@ -5,7 +5,7 @@ Template Name: Location Template
 ?>
 <script type="text/javascript">
 	mixpanel.track("Location viewed", {
-		"location": "<?php echo get_permalink(); ?>"
+		"SIL_location": "<?php echo get_permalink(); ?>"
 	});
 </script>
 <div id="primary">
