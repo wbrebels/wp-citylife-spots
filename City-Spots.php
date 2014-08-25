@@ -4,8 +4,7 @@ Plugin Name: CitySpots
 Plugin URI: http://citylifeapp.com/
 Description: We can handle it all! Also Locations
 Version: 1.0.2
-Author: Tom Claus
-Author URI: http://tomclaus.be/
+Author: Werner Brebels
 License: GPLv2
 */
 
@@ -46,6 +45,8 @@ function location_admin() {
 	add_meta_box( 'location_contact_meta_box', 'Contact information', 'location_contact_meta_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_openinghours_meta_box', 'Openinghours', 'location_openinghours_meta_box', 'location', 'normal', 'high' );
 	add_meta_box( 'location_information_meta_box', 'Information', 'location_information_meta_box', 'location', 'normal', 'high' );
+    add_meta_box( 'location_image_meta_box', 'Images', 'location_image_meta_box', 'location', 'normal', 'high' );
+    add_meta_box( 'location_herfstshopping_meta_box', 'Herfstshopping', 'location_herfstshopping_meta_box', 'location', 'normal', 'high' );
 }
 
 function location_key_box( $location ) {
@@ -98,10 +99,12 @@ function location_address_meta_box( $location ) {
 
 function location_contact_meta_box( $location ) {
 	
-	$location_phone 	= esc_attr( get_post_meta($location->ID, 'location_phone', true) );
-	$location_fax 		= esc_attr( get_post_meta($location->ID, 'location_fax', true) );
-	$location_email 	= esc_attr( get_post_meta($location->ID, 'location_email', true) );
-	$location_website 	= esc_attr( get_post_meta($location->ID, 'location_website', true) );
+	$location_phone 	    = esc_attr( get_post_meta($location->ID, 'location_phone', true) );
+	$location_fax 		    = esc_attr( get_post_meta($location->ID, 'location_fax', true) );
+	$location_email 	    = esc_attr( get_post_meta($location->ID, 'location_email', true) );
+	$location_website 	    = esc_attr( get_post_meta($location->ID, 'location_website', true) );
+    $location_facebook_link = esc_attr( get_post_meta($location->ID, 'location_facebook_link', true) );
+    $location_twitter_link 	= esc_attr( get_post_meta($location->ID, 'location_twitter_link', true) );
 
 	?>
 		<table width="100%">
@@ -119,7 +122,15 @@ function location_contact_meta_box( $location ) {
 			</tr>
 			<tr>
 				<td>Website</td>
-				<td><input type="text" size="50" name="location_website" value="<?php echo $location_website; ?>" /></td>
+				<td><input type="text" size="100" name="location_website" value="<?php echo $location_website; ?>" /></td>
+			</tr>
+            <tr>
+				<td>Facebook link</td>
+				<td><input type="text" size="100" name="location_facebook_link" value="<?php echo $location_facebook_link; ?>" /></td>
+			</tr>
+            <tr>
+				<td>Twitter link</td>
+				<td><input type="text" size="100" name="location_twitter_link" value="<?php echo $location_twitter_link; ?>" /></td>
 			</tr>
 		</table>
 	<?php
@@ -172,6 +183,119 @@ function location_information_meta_box( $location ) {
 	<?php 
 }
 
+function location_image_meta_box( $location ) {
+	
+	$location_image1_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image1_thumbnail_url', true) );
+	$location_image1_url    	    = esc_attr( get_post_meta($location->ID, 'location_image1_url', true) ); 
+    $location_image2_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image2_thumbnail_url', true) );
+	$location_image2_url    	    = esc_attr( get_post_meta($location->ID, 'location_image2_url', true) );
+    $location_image3_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image3_thumbnail_url', true) );
+	$location_image3_url    	    = esc_attr( get_post_meta($location->ID, 'location_image3_url', true) );
+    $location_image4_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image4_thumbnail_url', true) );
+	$location_image4_url    	    = esc_attr( get_post_meta($location->ID, 'location_image4_url', true) );    
+    $location_image5_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image5_thumbnail_url', true) );
+	$location_image5_url    	    = esc_attr( get_post_meta($location->ID, 'location_image5_url', true) );
+    $location_image6_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image6_thumbnail_url', true) );
+	$location_image6_url    	    = esc_attr( get_post_meta($location->ID, 'location_image6_url', true) );
+    $location_image7_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image7_thumbnail_url', true) );
+	$location_image7_url    	    = esc_attr( get_post_meta($location->ID, 'location_image7_url', true) );
+    $location_image8_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image8_thumbnail_url', true) );
+	$location_image8_url    	    = esc_attr( get_post_meta($location->ID, 'location_image8_url', true) );
+    $location_image9_thumbnail_url 	= esc_attr( get_post_meta($location->ID, 'location_image9_thumbnail_url', true) );
+	$location_image9_url    	    = esc_attr( get_post_meta($location->ID, 'location_image9_url', true) );
+    $location_image10_thumbnail_url = esc_attr( get_post_meta($location->ID, 'location_image10_thumbnail_url', true) );
+	$location_image10_url    	    = esc_attr( get_post_meta($location->ID, 'location_image10_url', true) );
+
+	?>	
+		<table width="100%">
+            <thead>
+                <tr>
+                   <th>Image</th>
+                   <th>Thumbnail URL</th>                   
+                   <th>Image URL</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="12%">Image 1 (Cover)</td>
+                    <td width="44%"><input type="text" size="50" name="location_image1_thumbnail_url" value="<?php echo $location_image1_thumbnail_url; ?>" /></td>
+                    <td width="44%"><input type="text" size="50" name="location_image1_url" value="<?php echo $location_image1_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 2</td>
+                    <td><input type="text" size="50" name="location_image2_thumbnail_url" value="<?php echo $location_image2_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image2_url" value="<?php echo $location_image2_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 3</td>
+                    <td><input type="text" size="50" name="location_image3_thumbnail_url" value="<?php echo $location_image3_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image3_url" value="<?php echo $location_image3_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 4</td>
+                    <td><input type="text" size="50" name="location_image4_thumbnail_url" value="<?php echo $location_image4_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image4_url" value="<?php echo $location_image4_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 5</td>
+                    <td><input type="text" size="50" name="location_image5_thumbnail_url" value="<?php echo $location_image5_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image5_url" value="<?php echo $location_image5_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 6</td>
+                    <td><input type="text" size="50" name="location_image6_thumbnail_url" value="<?php echo $location_image6_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image6_url" value="<?php echo $location_image6_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 7</td>
+                    <td><input type="text" size="50" name="location_image7_thumbnail_url" value="<?php echo $location_image7_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image7_url" value="<?php echo $location_image7_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 8</td>
+                    <td><input type="text" size="50" name="location_image8_thumbnail_url" value="<?php echo $location_image8_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image8_url" value="<?php echo $location_image8_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 9</td>
+                    <td><input type="text" size="50" name="location_image9_thumbnail_url" value="<?php echo $location_image9_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image9_url" value="<?php echo $location_image9_url; ?>" /></td>
+                </tr>
+                <tr>
+                    <td>Image 10</td>
+                    <td><input type="text" size="50" name="location_image10_thumbnail_url" value="<?php echo $location_image10_thumbnail_url; ?>" /></td>
+                    <td><input type="text" size="50" name="location_image10_url" value="<?php echo $location_image10_url; ?>" /></td>
+                </tr>
+            </tbody>
+		</table>
+	<?php 
+}
+
+
+function location_herfstshopping_meta_box( $location ) {
+	
+	$location_hs_start_date 	= esc_attr( get_post_meta($location->ID, 'location_hs_start_date', true) );
+	$location_hs_end_date    	= esc_attr( get_post_meta($location->ID, 'location_hs_end_date', true) ); 
+    $location_hs_description    = esc_attr( get_post_meta($location->ID, 'location_hs_description', true) ); 
+
+	?>	
+		<table width="100%">
+			<tr>
+				<td width="25%">Start date</td>
+				<td width="75%"><input type="text" size="50" name="location_hs_start_date" value="<?php echo $location_hs_start_date; ?>" /></td>
+			</tr>
+			<tr>
+				<td>End date</td>
+				<td><input type="text" size="50" name="location_hs_end_date" value="<?php echo $location_hs_end_date; ?>" /></td>
+			</tr>
+            <tr>
+				<td>Description</td>
+				<td><textarea cols="50" rows='5' name="location_hs_description"><?php echo $location_hs_description; ?></textarea></td></td>
+			</tr>            
+		</table>
+	<?php 
+}
+
 
 add_action( 'save_post', 'add_location_detail_fields', 10, 2 );
 function add_location_detail_fields( $location_id, $location ) {
@@ -189,13 +313,13 @@ function add_location_detail_fields( $location_id, $location ) {
 		update_post_meta( $location_id, 'location_zipcode', $_POST['location_zipcode'] );
 		update_post_meta( $location_id, 'location_city', $_POST['location_city'] );
 
-
 		// CONTACT
 		update_post_meta( $location_id, 'location_phone', $_POST['location_phone'] );
 		update_post_meta( $location_id, 'location_fax', $_POST['location_fax'] );
 		update_post_meta( $location_id, 'location_email', $_POST['location_email'] );
 		update_post_meta( $location_id, 'location_website', $_POST['location_website'] );
-
+        update_post_meta( $location_id, 'location_facebook_link', $_POST['location_facebook_link'] );
+        update_post_meta( $location_id, 'location_twitter_link', $_POST['location_twitter_link'] );
 
 		// OPENINGHOURS
 		update_post_meta( $location_id, 'location_openinghours', $_POST['location_openinghours'] );
@@ -205,6 +329,33 @@ function add_location_detail_fields( $location_id, $location ) {
 		// INFORMATION
 		update_post_meta( $location_id, 'location_longitude', $_POST['location_longitude'] );
 		update_post_meta( $location_id, 'location_latitude', $_POST['location_latitude'] );
+        
+        // IMAGES
+		update_post_meta( $location_id, 'location_image1_thumbnail_url', $_POST['location_image1_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image1_url', $_POST['location_image1_url'] );
+        update_post_meta( $location_id, 'location_image2_thumbnail_url', $_POST['location_image2_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image2_url', $_POST['location_image2_url'] );
+        update_post_meta( $location_id, 'location_image3_thumbnail_url', $_POST['location_image3_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image3_url', $_POST['location_image3_url'] );
+        update_post_meta( $location_id, 'location_image4_thumbnail_url', $_POST['location_image4_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image4_url', $_POST['location_image4_url'] );
+        update_post_meta( $location_id, 'location_image5_thumbnail_url', $_POST['location_image5_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image5_url', $_POST['location_image5_url'] );
+        update_post_meta( $location_id, 'location_image6_thumbnail_url', $_POST['location_image6_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image6_url', $_POST['location_image6_url'] );
+        update_post_meta( $location_id, 'location_image7_thumbnail_url', $_POST['location_image7_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image7_url', $_POST['location_image7_url'] );
+        update_post_meta( $location_id, 'location_image8_thumbnail_url', $_POST['location_image8_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image8_url', $_POST['location_image8_url'] );
+        update_post_meta( $location_id, 'location_image9_thumbnail_url', $_POST['location_image9_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image9_url', $_POST['location_image9_url'] );
+        update_post_meta( $location_id, 'location_image10_thumbnail_url', $_POST['location_image10_thumbnail_url'] );
+		update_post_meta( $location_id, 'location_image10_url', $_POST['location_image10_url'] );
+        
+        // HERFSTSHOPPING
+		update_post_meta( $location_id, 'location_hs_start_date', $_POST['location_hs_start_date'] );
+		update_post_meta( $location_id, 'location_hs_end_date', $_POST['location_hs_end_date'] );
+        update_post_meta( $location_id, 'location_hs_description', $_POST['location_hs_description'] );
 	}
 }
 
