@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: CitySpots
-Plugin URI: http://citylifeapp.com/
+Plugin URI: https://citylife.be/
 Description: We can handle it all! Also Locations
 Version: 1.0.2
 Author: Werner Brebels
