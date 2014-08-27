@@ -22,6 +22,8 @@ Template Name: Location Template
 			$location_fax = esc_attr(get_post_meta(get_the_ID(), 'location_fax', true));
 			$location_email = antispambot(esc_attr(get_post_meta(get_the_ID(), 'location_email', true)));
 			$location_website = esc_attr(get_post_meta( get_the_ID(), 'location_website', true ));
+			$location_facebook_link = esc_attr(get_post_meta( get_the_ID(), 'location_facebook_link', true ));
+			$location_twitter_link = esc_attr(get_post_meta( get_the_ID(), 'location_twitter_link', true ));
 
 			$location_address_street = esc_attr(get_post_meta(get_the_ID(), 'location_street', true ));
 			$location_address_number = esc_attr(get_post_meta(get_the_ID(), 'location_number', true ));
@@ -44,6 +46,32 @@ Template Name: Location Template
 
 			$location_openinghours = esc_attr(get_post_meta(get_the_ID(), 'location_openinghours', true));
 			$location_closingdays = esc_attr(get_post_meta(get_the_ID(), 'location_closingdays', true));
+
+			// Images
+			$location_image1_url = esc_attr(get_post_meta( get_the_ID(), 'location_image1_url', true ));
+			$location_image1_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image1_thumbnail_url', true ));
+			$location_image2_url = esc_attr(get_post_meta( get_the_ID(), 'location_image2_url', true ));
+			$location_image2_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image2_thumbnail_url', true ));
+			$location_image3_url = esc_attr(get_post_meta( get_the_ID(), 'location_image3_url', true ));
+			$location_image3_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image3_thumbnail_url', true ));
+			$location_image4_url = esc_attr(get_post_meta( get_the_ID(), 'location_image4_url', true ));
+			$location_image4_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image4_thumbnail_url', true ));
+			$location_image5_url = esc_attr(get_post_meta( get_the_ID(), 'location_image5_url', true ));
+			$location_image5_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image5_thumbnail_url', true ));
+			$location_image6_url = esc_attr(get_post_meta( get_the_ID(), 'location_image6_url', true ));
+			$location_image6_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image6_thumbnail_url', true ));
+			$location_image7_url = esc_attr(get_post_meta( get_the_ID(), 'location_image7_url', true ));
+			$location_image7_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image7_thumbnail_url', true ));
+			$location_image8_url = esc_attr(get_post_meta( get_the_ID(), 'location_image8_url', true ));
+			$location_image8_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image8_thumbnail_url', true ));
+			$location_image9_url = esc_attr(get_post_meta( get_the_ID(), 'location_image9_url', true ));
+			$location_image9_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image9_thumbnail_url', true ));
+			$location_image10_url = esc_attr(get_post_meta( get_the_ID(), 'location_image10_url', true ));
+			$location_image10_thumbnail_url = esc_attr(get_post_meta( get_the_ID(), 'location_image10_thumbnail_url', true ));
+
+			$location_hs_start_date = esc_attr(get_post_meta( get_the_ID(), 'location_hs_start_date', true ));
+			$location_hs_end_date = esc_attr(get_post_meta( get_the_ID(), 'location_hs_end_date', true ));
+			$location_hs_description = esc_attr(get_post_meta( get_the_ID(), 'location_hs_description', true ));
 		?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
@@ -54,6 +82,72 @@ Template Name: Location Template
 					</div>
 				</header>
 				<div class="entry-content">
+					<div class="row">
+						<div class="span9">
+							<?php 
+								if (
+									$location_hs_start_date !== "" &&
+									$location_hs_end_date !== "" &&
+									$location_hs_description !== "" &&
+									(strtotime($location_hs_start_date) < time() && strtotime($location_hs_end_date) > time())
+								) {
+									echo "<hr>";
+									echo "<b>Voordeel: </b>" . $location_hs_description;
+								}
+							?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span-9">
+						<?php
+						if (
+							$location_image1_thumbnail_url !== "" ||
+							$location_image2_thumbnail_url !== "" ||
+							$location_image3_thumbnail_url !== "" ||
+							$location_image4_thumbnail_url !== "" ||
+							$location_image5_thumbnail_url !== "" ||
+							$location_image6_thumbnail_url !== "" ||
+							$location_image7_thumbnail_url !== "" ||
+							$location_image8_thumbnail_url !== "" ||
+							$location_image9_thumbnail_url !== "" ||
+							$location_image10_thumbnail_url !== ""
+						) {
+							echo "<hr>";
+
+							if($location_image1_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image1_thumbnail_url . "\" />";
+							}
+							if($location_image2_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image2_thumbnail_url . "\" />";
+							}
+							if($location_image3_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image3_thumbnail_url . "\" />";
+							}
+							if($location_image4_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image4_thumbnail_url . "\" />";
+							}
+							if($location_image5_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image5_thumbnail_url . "\" />";
+							}
+							if($location_image6_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image6_thumbnail_url . "\" />";
+							}
+							if($location_image7_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image7_thumbnail_url . "\" />";
+							}
+							if($location_image8_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image8_thumbnail_url . "\" />";
+							}
+							if($location_image9_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image9_thumbnail_url . "\" />";
+							}
+							if($location_image10_thumbnail_url !== ""){
+								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image10_thumbnail_url . "\" />";
+							}
+						}
+						?>
+						</div>
+					</div>
 					<hr />
 					<div class="row">
 						<?php if($location_phone || $location_fax || $location_email || $location_website){ ?>
@@ -69,7 +163,13 @@ Template Name: Location Template
 									echo '<a href="mailto:' . $location_email . '">' . $location_email . '</a>' . "<br />";
 								}
 								if($location_website !== ""){
-									echo '<a href="http://' . str_replace("http://", "", $location_website) . '">' . $location_website . '</a>' . "<br />";
+									echo '<a href="http://' . str_replace("http://", "", $location_website) . '">' . $location_website . '</a>' . "<br /> <br />";
+								}
+								if($location_facebook_link !== ""){
+									echo '<a href="http://' . str_replace("http://", "", $location_facebook_link) . '">' . 'Like ons op facebook' . '</a>' . "<br />";
+								}
+								if($location_twitter_link !== ""){
+									echo '<a href="http://' . str_replace("http://", "", $location_twitter_link) . '">' . 'Volg ons op twitter' . '</a>' . "<br />";
 								}
 							?>
 							</div>
