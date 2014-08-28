@@ -97,7 +97,7 @@ Template Name: Location Template
 									(strtotime($location_hs_start_date) < time() && strtotime($location_hs_end_date) > time())
 								) {
 									echo "<hr>";
-									echo "<b>Voordeel: </b>" . $location_hs_description;
+									echo "<b>Herfstvoordeel: </b>" . $location_hs_description . " (geldig tot " . Date('j/n/Y' , strtotime($location_hs_end_date)) . ")";
 								}
 							?>
 						</div>
@@ -119,36 +119,95 @@ Template Name: Location Template
 						) {
 							echo "<hr>";
 
-							if($location_image1_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image1_thumbnail_url . "\" />";
-							}
-							if($location_image2_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image2_thumbnail_url . "\" />";
-							}
-							if($location_image3_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image3_thumbnail_url . "\" />";
-							}
-							if($location_image4_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image4_thumbnail_url . "\" />";
-							}
-							if($location_image5_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image5_thumbnail_url . "\" />";
-							}
-							if($location_image6_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image6_thumbnail_url . "\" />";
-							}
-							if($location_image7_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image7_thumbnail_url . "\" />";
-							}
-							if($location_image8_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image8_thumbnail_url . "\" />";
-							}
-							if($location_image9_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image9_thumbnail_url . "\" />";
-							}
-							if($location_image10_thumbnail_url !== ""){
-								echo "<img src=\"" . $location_image10_thumbnail_url . "\" />";
-							}
+							// <a href="#img1">
+							//   <img src="https://s3.amazonaws.com/gschierBlog/images/pig-small.jpg">
+							// </a>
+
+							// <!-- lightbox container hidden with CSS -->
+							// <a href="#_" class="lightbox" id="img1">
+							//   <img src="https://s3.amazonaws.com/gschierBlog/images/pig-big.jpg">
+							// </a>
+
+							if($location_image1_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image1_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
+									<img src="<?php echo $location_image1_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image2_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-2">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image2_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-2">
+									<img src="<?php echo $location_image2_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image3_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-3">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image3_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-3">
+									<img src="<?php echo $location_image3_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image4_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-4">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image4_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-4">
+									<img src="<?php echo $location_image4_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image5_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-5">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image5_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-5">
+									<img src="<?php echo $location_image5_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image6_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-6">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image6_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-6">
+									<img src="<?php echo $location_image6_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image7_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-7">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image7_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-7">
+									<img src="<?php echo $location_image7_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image8_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-8">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image8_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-8">
+									<img src="<?php echo $location_image8_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image9_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-9">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image9_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-9">
+									<img src="<?php echo $location_image9_url; ?>" alt="">
+								</a>
+							<?php }
+							if($location_image10_thumbnail_url !== ""){ ?>
+								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image10_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
+									<img src="<?php echo $location_image1_url; ?>" alt="">
+								</a>
+							<?php }
 						}
 						?>
 						</div>
