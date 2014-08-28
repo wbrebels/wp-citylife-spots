@@ -3,6 +3,11 @@
 Template Name: Location Template
 */
 ?>
+
+<?php 
+	wp_enqueue_style( 'wp-citylife-spots', plugins_url( 'css/wp-citylife-spots.css', __FILE__ ) );
+?>
+
 <script type="text/javascript">
 	mixpanel.track("Location viewed", {
 		"SIL_location": "<?php echo get_permalink(); ?>"
@@ -98,7 +103,7 @@ Template Name: Location Template
 						</div>
 					</div>
 					<div class="row">
-						<div class="span-9">
+						<div class="span-9 wp-citylife-spots-images">
 						<?php
 						if (
 							$location_image1_thumbnail_url !== "" ||
@@ -115,34 +120,34 @@ Template Name: Location Template
 							echo "<hr>";
 
 							if($location_image1_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image1_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image1_thumbnail_url . "\" />";
 							}
 							if($location_image2_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image2_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image2_thumbnail_url . "\" />";
 							}
 							if($location_image3_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image3_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image3_thumbnail_url . "\" />";
 							}
 							if($location_image4_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image4_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image4_thumbnail_url . "\" />";
 							}
 							if($location_image5_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image5_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image5_thumbnail_url . "\" />";
 							}
 							if($location_image6_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image6_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image6_thumbnail_url . "\" />";
 							}
 							if($location_image7_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image7_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image7_thumbnail_url . "\" />";
 							}
 							if($location_image8_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image8_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image8_thumbnail_url . "\" />";
 							}
 							if($location_image9_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image9_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image9_thumbnail_url . "\" />";
 							}
 							if($location_image10_thumbnail_url !== ""){
-								echo "<img style=\"height: 150px; margin: 10px\" src=\"" . $location_image10_thumbnail_url . "\" />";
+								echo "<img src=\"" . $location_image10_thumbnail_url . "\" />";
 							}
 						}
 						?>
@@ -166,10 +171,10 @@ Template Name: Location Template
 									echo '<a href="http://' . str_replace("http://", "", $location_website) . '">' . $location_website . '</a>' . "<br /> <br />";
 								}
 								if($location_facebook_link !== ""){
-									echo '<a href="http://' . str_replace("http://", "", $location_facebook_link) . '">' . 'Like ons op facebook' . '</a>' . "<br />";
+									echo '<img class="wp-citylife-spots-facebook-icon" src="' . plugins_url( 'images/facebook.png', __FILE__ ) .'"/><a class="wp-citylife-spots-facebook-link" href="http://' . str_replace("http://", "", $location_facebook_link) . '">' . 'Like ons op facebook' . '</a>' . "<br />";
 								}
 								if($location_twitter_link !== ""){
-									echo '<a href="http://' . str_replace("http://", "", $location_twitter_link) . '">' . 'Volg ons op twitter' . '</a>' . "<br />";
+									echo '<img class="wp-citylife-spots-twitter-icon" src="' . plugins_url( 'images/twitter.png', __FILE__ ) .'"/><a href="http://' . str_replace("http://", "", $location_twitter_link) . '">' . 'Volg ons op twitter' . '</a>' . "<br />";
 								}
 							?>
 							</div>
