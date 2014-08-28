@@ -97,13 +97,12 @@ Template Name: Location Template
 									(strtotime($location_hs_start_date) < time() && strtotime($location_hs_end_date) > time())
 								) {
 									echo "<hr>";
-									echo "<b>Herfstvoordeel: </b>" . $location_hs_description . " (geldig tot " . Date('j/n/Y' , strtotime($location_hs_end_date)) . ")";
+									echo "<b>Herfstshopping voordeel (geldig tot " . Date('j/n/Y' , strtotime($location_hs_end_date)) . "): </b><br>" . $location_hs_description;
 								}
 							?>
 						</div>
 					</div>
 					<div class="row">
-						<div class="span-9 wp-citylife-spots-images">
 						<?php
 						if (
 							$location_image1_thumbnail_url !== "" ||
@@ -118,6 +117,7 @@ Template Name: Location Template
 							$location_image10_thumbnail_url !== ""
 						) {
 							echo "<hr>";
+							echo '<div class="span-9 wp-citylife-spots-images">';
 
 							// <a href="#img1">
 							//   <img src="https://s3.amazonaws.com/gschierBlog/images/pig-small.jpg">
@@ -209,8 +209,8 @@ Template Name: Location Template
 								</a>
 							<?php }
 						}
+						echo '</div>';
 						?>
-						</div>
 					</div>
 					<hr />
 					<div class="row">
