@@ -50,3 +50,7 @@ a.wp-citylife-spots-has-img{
    /** Remove default browser outline style */
    outline: none;
 }
+
+.btn-channel.btn-channel-herfstshopping .channel-icon{
+   background-color: #6ebe44;
+}
