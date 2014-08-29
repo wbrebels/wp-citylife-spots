@@ -82,18 +82,19 @@ Template Name: Location Template
 				<header class="entry-header">
 					<h1 class="entry-title"><?php echo $location_name; ?></h1>
 					<div class="clearfix">
+						<?php 
+						if ($location_image1_thumbnail_url !== ""){ ?>
 						<div>
-							<?php 
-							if ($location_image1_thumbnail_url !== ""){ ?>
-								<a class="location-thumbnail pull-right wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
-									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image1_thumbnail_url; ?>"/>
-								</a>
-								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
-									<img src="<?php echo $location_image1_url; ?>" alt="">
-								</a>
-							<?php
-							} ?>
-						</div>	
+							<a class="location-thumbnail pull-right wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
+								<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image1_thumbnail_url; ?>"/>
+							</a>
+							<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
+								<img src="<?php echo $location_image1_url; ?>" alt="">
+							</a>
+						</div>
+						<?php
+						} ?>
+							
 						<?php echo $location_description; ?>
 					</div>
 				</header>
@@ -210,8 +211,8 @@ Template Name: Location Template
 									<img src="<?php echo $location_image1_url; ?>" alt="">
 								</a>
 							<?php }
+							echo '</div>';
 						}
-						echo '</div>';
 						?>
 					</div>
 					<hr />
