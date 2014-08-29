@@ -82,7 +82,18 @@ Template Name: Location Template
 				<header class="entry-header">
 					<h1 class="entry-title"><?php echo $location_name; ?></h1>
 					<div class="clearfix">
-						<div><?php the_post_thumbnail("medium", array('class' => 'location-thumbnail pull-right')) ?></div>	
+						<div>
+							<?php 
+							if ($location_image1_thumbnail_url !== ""){ ?>
+								<a class="location-thumbnail pull-right wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
+									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image1_thumbnail_url; ?>"/>
+								</a>
+								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
+									<img src="<?php echo $location_image1_url; ?>" alt="">
+								</a>
+							<?php
+							} ?>
+						</div>	
 						<?php echo $location_description; ?>
 					</div>
 				</header>
@@ -105,7 +116,6 @@ Template Name: Location Template
 					<div class="row">
 						<?php
 						if (
-							$location_image1_thumbnail_url !== "" ||
 							$location_image2_thumbnail_url !== "" ||
 							$location_image3_thumbnail_url !== "" ||
 							$location_image4_thumbnail_url !== "" ||
@@ -128,14 +138,6 @@ Template Name: Location Template
 							//   <img src="https://s3.amazonaws.com/gschierBlog/images/pig-big.jpg">
 							// </a>
 
-							if($location_image1_thumbnail_url !== ""){ ?>
-								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-1">
-									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image1_thumbnail_url; ?>"/>
-								</a>
-								<a href="#_" class="wp-citylife-spots-lightbox" id="wp-citylife-spots-images-image-1">
-									<img src="<?php echo $location_image1_url; ?>" alt="">
-								</a>
-							<?php }
 							if($location_image2_thumbnail_url !== ""){ ?>
 								<a class="wp-citylife-spots-has-img" href="#wp-citylife-spots-images-image-2">
 									<img class="wp-citylife-spots-images-thumbnail" src="<?php echo $location_image2_thumbnail_url; ?>"/>
